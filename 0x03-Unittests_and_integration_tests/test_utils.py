@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 
+"""
+Unit tests for utils module functions:
+- access_nested_map
+- get_json
+- memoize
+"""
+
 import unittest
 from parameterized import parameterized
 from unittest.mock import patch, Mock
