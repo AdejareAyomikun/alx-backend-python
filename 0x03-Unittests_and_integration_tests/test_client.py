@@ -58,3 +58,11 @@ class TestGithubOrgClient(unittest.TestCase):
             self.assertEqual(repos, ["repo1", "repo2", "repo3"])
             mock_url.__str__  # just to avoid unused variable warning
             mock_get_json.assert_called_once_with("http://some_url")
+
+    @parameterized.expand([
+        ({"license": {"key": "my_license"}}, "my_license", True),
+        ({"license": {"key": "other_license"}}, "my_license", False),
+    ])
+    def test_has_license(self, repo, license_key, expected):
+        client = GithubOrgClient("testorg")
+        self.assertEqual(client.has_license(repo, license_key), expected)
